@@ -45,6 +45,12 @@ function creatRandomNumber(minNumber, maxNumber)
 
 
 // -Eine Funktion mit der wir den ersten Buchstaben des jeweligen Wirtes groß schreiben (PascalCase)
+/**
+ * @function capitalizeString
+ * @description Takes the first letter of a string and changes it to UpperCase, then returns string
+ * @param { string } word 
+ * @returns { string }
+ */
 function capitalizeString(word)
 {
     //Prüfe ob kein wort vorhanden ist
@@ -64,7 +70,34 @@ function capitalizeString(word)
 
 }
 
-console.log(capitalizeString('hello'));
-
 // -Eine Funktion mit der wir den benutzernamen generieren und auf die ergebnisse der anderen funktion zugreifen
+
+/**
+ * @function createRandomUserName
+ * @description Creates a random username
+ * @param { number } maxNumber 
+ * @returns { string }
+ */
+
+function createRandomUserName(maxNumber)
+{
+    //Wir holen uns die wörter
+    const words = getWords();
+
+    //Wir holen uns aus der wortliste die adjektive
+    const adj = words.adjs[ Math.floor(Math.random() * (words.adjs.length - 1 )) ];
+
+    //Wir halen uns aus der wortliste die nomen
+    const noun = words.nouns[ Math.floor(Math.random() * (words.nouns.length - 1 ))];
+
+    //Wir holen uns unsere zufallszahl
+    const randomNumber = creatRandomNumber(10000, maxNumber);
+
+    const finalUserName = `${ capitalizeString(adj)}${ capitalizeString(noun)}${maxNumber !== 0 ? randomNumber : ''}`
+
+    return finalUserName;
+}
+
+createRandomUserName(50000);
+
 // -Eine export, um die Applikation in einer anderen datei zu nutzen
